@@ -199,6 +199,19 @@ h4 {
   @include font-size(20px);
 }
 
+
+/*----------------------------
+Push Menu
+----------------------------*/
+
+.pushy {
+  background: $darkpurple;
+}
+
+.site-overlay {
+  background: transparent !important;
+}
+
 /*----------------------------
 Header + Logo with PNG fallback
 ----------------------------*/
@@ -605,7 +618,17 @@ Button
   display: inline-block;
   position: relative;
   text-transform: uppercase;
+}
 
+.button.calltoaction {
+  width: 200px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid $purple;
+  color: $purple;
+  width: 200px;
+  clear: both;
 }
 
 .darkpurple-bg {
@@ -624,10 +647,12 @@ Content
 .body-content {
   .featured {
     padding-top: 10px;
+    padding-bottom: 40px;
+
   }
   .wrapper {
     background: rgba(white, 0.85);
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     margin-top: -100px;
     position: relative;
     z-index: 1;
@@ -672,6 +697,10 @@ Content
   .trending {
     position: relative;
     text-align: center;
+    border-top: 2px dashed $turquoise;
+    border-bottom: 2px dashed $turquoise;
+    padding-top: 35px;
+    padding-bottom: 25px;
     &::before {
       content: "";
       position: absolute;
@@ -689,17 +718,54 @@ Content
       top:0;
       height: 100%;
       width: 100%;
-      background: rgba($purple, 0.9);
+      background: rgba($turquoise, 0.9);
+    }
+    .wrapper {
+      margin-top: 0;
+      padding: 20px;
+      background: transparent;
+    }
+    .message {
+      /*background: rgba(white, 1);*/
+      padding: 10px 0 0px;
+      margin: 0 50px;
     }
     h1.section-title {
-      padding: 25px 10px;
-      @include font-size(65px);
+      padding: 0px 10px 0px;
+      @include font-size(85px);
       color: white;
-      margin-bottom: 10px;
+      margin-bottom: 0px;
       display: inline-block;
       position: relative;
       z-index: 1;
       font-family: $script;
+    }
+    span {
+      display: inside-block;
+      color: white;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+      border-bottom: 3px solid white;
+      @include font-size(30px);
+    }
+    h2 {
+      color: white;
+      @include font-size(30px);
+      font-weight: 300;
+    }
+    a {
+      color: white;
+      border: 1px solid white;
+      border-radius: 50%;
+      height: 80px;
+      width: 80px;
+      line-height: 80px;
+      display: inline-block;
+      margin: 30px 3px 0;
+    }
+    i::before {
+      @include font-size(37px);
     }
     .product {
       background: white;
