@@ -1,0 +1,721 @@
+/*----------------------------
+Variables
+----------------------------*/
+
+$purple: #c44893;
+$darkpurple: #693575;
+$turquoise: #00a4a3;
+$red: #e7314d;
+$blue: #0078CE;
+$darkblue: #2D3643;
+$text: #333;
+$type: 'Lato', sans-serif;
+$script: 'Dancing Script', cursive;
+$link-color: #333;
+$link-hover: #0DA2D8;
+$link-vertical-padding: 8px;
+$link-horizontal-padding: 14px;
+$menu-background: #111;
+$buttonheight: 42px;
+
+/*GRID*/
+$grid-columns: 12;
+$grid-max-width: 1170px;
+
+/*BREAK*/
+$breakpoint-small: "only screen and (max-width: 640px)";
+$breakpoint-medium: "only screen and (max-width: 1100px)";
+
+@mixin border-box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 17px;
+
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+@mixin svg-bg($name) {
+  background: url("../../images/#{$name}.png") transparent 0 0 no-repeat;
+  background: url("../../images/#{$name}.svg") transparent 0 0 no-repeat;
+}
+
+@mixin centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin transition-duration($duration) {
+  -moz-transition-duration: $duration;
+  -o-transition-duration: $duration;
+  -webkit-transition-duration: $duration;
+  transition-duration: $duration;
+}
+
+$mobile-width: 766px;
+$tablet-width: 1000px;
+$menu-tweak: 767px;
+
+@mixin mobile-screen {
+  @media (max-width: #{$mobile-width}) {
+    @content;
+  }
+}
+
+@mixin small-screen {
+  @media (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin menu-tweak {
+  @media (max-width: #{$menu-tweak}) {
+    @content;
+  }
+}
+
+/*----------------------------
+Grid
+----------------------------*/
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: white;
+  color: $text;
+  font-family: $type;
+  -webkit-font-smoothing: antialiased;
+  /*transition: all 0.4s ease;*/
+}
+
+%clearfix {
+  *zoom: 1;
+
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+
+  @include border-box;
+
+  text-decoration: none;
+}
+
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto !important;
+}
+
+.break {
+  clear: both;
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.wrapper, .row {
+  @extend %clearfix;
+}
+
+[class*='column-'] {
+  float: left;
+  width: 100%;
+  min-height: 1px;
+}
+
+.wrapper {
+  width: $grid-max-width;
+  max-width: $grid-max-width;
+  @include small-screen {
+    width: 90%;
+  }
+}
+
+@for $i from 1 through $grid-columns {
+  .column-#{$i} {
+    width: 100% / $grid-columns * $i;
+  }
+}
+
+@include small-screen {
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+
+/*----------------------------
+TYPOGRAPHY
+----------------------------*/
+p, h1, h2, h3, h4, li, a {
+  font-weight: normal;
+  @include font-size(19px);
+}
+
+p {
+  @include font-size(19px);
+  margin-bottom: 20px;
+  line-height: 140%;
+}
+
+h1 {
+  @include font-size(40px);
+  margin: 0 0 30px 0;
+}
+
+h2 {
+  @include font-size(40px);
+}
+
+h3 {
+  @include font-size(24px);
+}
+
+h4 {
+  @include font-size(20px);
+}
+
+/*----------------------------
+Header + Logo with PNG fallback
+----------------------------*/
+
+header {
+  position: absolute;
+  z-index: 101;
+  padding:0;
+  width: 100%;
+  .wrapper {
+    display: table;
+  }
+  a.logo {
+    width: 308px;
+    height: 141px;
+    display: table-cell;
+    text-indent: -9999px;
+    @include svg-bg("logo");
+    background-size: contain;
+  }
+  .header-front {
+    height: 123px;
+    overflow: visible;
+    background: $darkpurple;
+    .nav {
+      padding-top: 43px;
+      width: 35%;
+      ul li {
+        float: left;
+        color: white;
+        font-weight: 100;
+        padding: 7px 0;
+        a {
+          @include font-size(20px);
+          display: inline;
+          padding: 0px 10px;
+          font-weight: 100;
+        }
+      }
+    }
+    li.push-menu {
+      position: relative;
+      padding-left: 30px !important;
+      padding-right: 30px !important;
+      margin-right: 20px;
+      border-right: 1px solid darken( $darkpurple, 7% );
+      &:before {
+        font-family: "Flaticon";
+        content: "\e007";
+        font-size: 28px;
+        font-weight: 100;
+        top:4px;
+        position: absolute;
+        left:0;
+      }
+    }
+    li.user {
+      position: relative;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      margin-right: 30px;
+      border-right: 1px solid darken( $darkpurple, 7% );
+      color: white;
+      &:before {
+        font-family: "Flaticon";
+        content: "\e00d";
+        font-size: 20px;
+        font-weight: 100;
+        top:8px;
+        position: absolute;
+        left:0;
+        color: white;
+      }
+    }
+    li.cart {
+      position: relative;
+      padding-left: 28px !important;
+      &:before {
+        font-family: "Flaticon";
+        content: "\e00c";
+        font-size: 25px;
+        font-weight: 100;
+        top:4px;
+        position: absolute;
+        left:0;
+      }
+      span.count {
+        background: $turquoise;
+        display: inline-block;
+        @include font-size(16px);
+        font-weight: 400;
+        padding: 3px 7px;
+        margin-left: 5px;
+      }
+    }
+    .right {
+      nav li {
+        float: right;
+      }
+    }
+  }
+  .header-back {
+    overflow: visible;
+    background: $turquoise;
+    background: rgba($turquoise, 0.75);
+    padding: 17px 0 9px;
+    text-align: center;
+    nav ul li a {
+      font-weight: 300;
+      @include font-size(20px);
+    }
+  }
+  .nav {
+    display: table-cell;
+  }
+}
+
+.sticky {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 5px 0 9px !important;
+}
+
+#fixed-nav {
+  /*position: absolute;*/
+  z-index: 100;
+  padding-top: 40px;
+  width: 100%;
+
+  @include small-screen {
+    padding-top: 15px;
+  }
+}
+
+.navigation {
+  /*float: right;*/
+  margin-left: -14px;
+  margin-top: 5px;
+  width: 100%;
+  clear: both;
+  @include small-screen {
+    margin-top: 9px;
+  }
+  @include mobile-screen {
+    margin-top: 0px;
+  }
+
+}
+
+.search-area {
+  float: right;
+}
+
+/*----------------------------
+NAVIGATION STYLES
+----------------------------*/
+nav {
+  /*width:100%;*/
+  @include menu-tweak {
+    margin: 65px 0 0 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    background: darken(#262626, 5%);
+    width: 100%;
+    display: none;
+  }
+}
+
+nav ul {
+  margin: 0;
+  list-style: none;
+  @include menu-tweak {
+    margin: 0;
+    padding: 30px;
+  }
+
+
+  li {
+    /*float: left;*/
+    display: inline-block;
+    position: relative;
+    @include menu-tweak {
+      float: none;
+      position: relative;
+      margin: 0 5px 0 0;
+    }
+
+
+    a {
+      display: block;
+      padding: $link-vertical-padding $link-horizontal-padding;
+      text-align: left;
+      color: white;
+      text-decoration: none;
+      @include transition-duration(0.5s);
+      &:hover {
+        color: white;
+        @include transition-duration(0.5s);
+      }
+
+      @include menu-tweak {
+        display: table;
+        margin: 0;
+        padding: 15px 20px;
+        color: #fff;
+        text-shadow: none;
+        width: 100%;
+      }
+    }
+  }
+}
+
+nav a.current {
+  color: white;
+  font-weight: 700 !important;
+}
+
+/*----------------------------
+MOBILE NAV STYLES
+----------------------------*/
+.mobile-nav {
+  opacity: .95;
+  display: none;
+  margin: 0;
+  padding: 17px;
+  position: absolute;
+  color: white;
+  text-decoration: none;
+  top: 17px;
+  left: 0px;
+  line-height: 0;
+  font-size: 35px;
+  text-shadow: none;
+  box-shadow: none;
+  height: 27px;
+  width: 24px;
+  text-indent: -9999px;
+  outline: none;
+  @include svg-bg("menu-icon");
+  @include menu-tweak {
+    display: block;
+  }
+}
+
+.active {
+  max-height: 9000px !important;
+  font-weight: bold;
+  @include transition-duration(1s);
+
+  position: absolute;
+  right: 0;
+  top: 25px;
+  display: block;
+}
+
+.mobile-user-nav {
+  display: none;
+  margin: 0;
+  position: absolute;
+  color: $text;
+  text-decoration: none;
+  top: 17px;
+  right: 0px;
+  line-height: 0;
+  font-size: 35px;
+  text-shadow: none;
+  box-shadow: none;
+  height: 26px;
+  width: 26px;
+  outline: none;
+  opacity: .8;
+  @include svg-bg("user");
+  background-size: cover;
+  @include menu-tweak {
+    display: block;
+  }
+  i {
+    position: absolute;
+    left: 0;
+    top:0;
+    font-size: 28px;
+  }
+}
+
+/*----------------------------
+Search Field
+----------------------------*/
+
+form {
+  margin: 0px auto 0px;
+}
+
+.search_bar {
+  position: relative;
+  max-width: 250px;
+  min-width: 250px;
+  input[type=text] {
+    border: none;
+    box-shadow: none;
+    @include font-size(20px);
+    width: 80%;
+    padding: 0px;
+    padding-left: 47px;
+    margin: 0;
+    overflow: hidden;
+    background: transparent;
+    color: white;
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  button[type=submit] {
+    background: transparent;
+    color: rgba(255, 255, 255, 0);
+    border: 0px solid $blue;
+    width: 8%;
+    min-width: 46px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    bottom: -1px;
+    border-radius: 0 3px 3px 0;
+    margin: 0;
+    user-select: none;
+    
+    &:after {
+      font-family: "Flaticon";
+      content: "\e006";
+      font-size: 20px;
+      position: absolute;
+      top: 7%;
+      right: 0;
+      bottom: 0%;
+      left: 4%;
+      color: white;
+    }
+    
+    &:hover, &:focus {
+      cursor: pointer;
+    }
+  }
+  
+  ::placeholder {
+   font-weight: 400;
+}
+  
+}
+
+/*----------------------------
+Slider
+----------------------------*/
+
+body, html {
+  height: 100%;
+  min-height: 100%;
+}
+
+#container {
+  height: 100%;
+}
+
+.slider {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  .slide {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .wrapper {
+    padding: 230px 100px 150px;
+  }
+  .one .wrapper {
+    text-align: center;
+  }
+  h1 {
+    @include font-size(107px);
+    color: white;
+    font-weight: 800;
+    line-height: 110%;
+    margin: 0 0 25px 0;
+    text-shadow:1px 1px 0 rgba(0,0,0,0.2);
+  }
+}
+
+
+/*----------------------------
+Button
+----------------------------*/
+
+.button {
+  padding: 0 25px;
+  margin: 10px 5px;
+  @include font-size(20px);
+  color: white;
+  line-height: 47px;
+  display: inline-block;
+  position: relative;
+  text-transform: uppercase;
+
+}
+
+.darkpurple-bg {
+  background: $darkpurple;
+}
+
+.red-bg {
+  background: $red;
+}
+
+
+
+/*----------------------------
+Content
+----------------------------*/
+.body-content {
+  .featured {
+    margin-top: -100px;
+    padding-top: 10px;
+    background: rgba(white, 0.85);
+  }
+  .wrapper {
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+    h1.section-title {
+      padding: 15px 10px;
+      @include font-size(25px);
+      color: $darkpurple;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+    .directional-nav {
+      float: right;
+      clear: right;
+      margin: 10px;
+      a {
+        border: 1px solid $darkpurple;
+        padding: 6px 7px;
+      }
+    }
+  }
+  .product {
+    padding: 0 10px;
+    margin-bottom: 25px;
+    text-align: center;
+    .product-image {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .product-name {
+      @include font-size(20px);
+      font-weight: 400;
+    }
+    .product-price {
+      color: $turquoise;
+      @include font-size(25px);
+      font-weight: 700;
+    }
+  }
+  .trending {
+    position: relative;
+    text-align: center;
+    &::before {
+      content: "";
+      position: absolute;
+      left:0;
+      top:0;
+      height: 100%;
+      width: 100%;
+      background: url("../../images/bg03.jpg") center center no-repeat;
+      background-size: cover;
+    }
+    &::after{
+      content: "";
+      position: absolute;
+      left:0;
+      top:0;
+      height: 100%;
+      width: 100%;
+      background: rgba($purple, 0.9);
+    }
+    h1.section-title {
+      padding: 25px 10px;
+      @include font-size(65px);
+      color: white;
+      margin-bottom: 10px;
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      font-family: $script;
+    }
+    .product {
+      background: white;
+    }
+  }
+}
+
+a.addtocart {
+  background: $purple;
+  @include font-size(14px);
+  text-transform: uppercase;
+  color: white;
+  padding: 0 15px;
+  line-height: 33px;
+  display: inline-block;
+  border-radius: 2px;
+  margin: 5px 0;
+}
+

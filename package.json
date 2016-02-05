@@ -1,0 +1,21 @@
+{
+  "name": "art-and-craft-factory",
+  "version": "1.0.0",
+  "description": "Art & Craft Factory Website Design Exercise",
+  "author": "Rofikul Islam Shahin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rshahin/acf.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-imagemin": "^1.0.0",
+    "grunt-contrib-sass": "^0.9.2",
+    "grunt-contrib-uglify": "^0.11.0",
+    "grunt-contrib-watch": "^0.6.1"
+  },
+  "dependencies": {
+    "imagemin": "^4.0.0"
+  }
+}
