@@ -587,7 +587,7 @@ body, html {
     background-repeat: no-repeat;
   }
   .wrapper {
-    padding: 235px 100px 145px;
+    padding: 245px 100px 155px;
   }
   .one .wrapper {
     text-align: center;
@@ -598,7 +598,7 @@ body, html {
     font-weight: 800;
     line-height: 110%;
     margin: 0 0 25px 0;
-    text-shadow:1px 1px 0 rgba(0,0,0,0.2);
+    /*text-shadow:1px 1px 0 rgba(0,0,0,0.2);*/
   }
 }
 
@@ -696,6 +696,12 @@ Content
       @include font-size(25px);
       font-weight: 700;
     }
+    .product-cat a {
+      color: $text;
+      @include font-size(14px);
+      font-weight: 100;
+      text-transform: uppercase;
+    }
   }
   .offer {
     position: relative;
@@ -781,7 +787,7 @@ Content
       padding: 30px 0;
     }
     .product-name {
-      @include font-size(75px);
+      @include font-size(65px);
       font-weight: 700;
       line-height: 100%;
       margin: 0;
@@ -796,6 +802,12 @@ Content
       color: $turquoise;
       @include font-size(55px);
       font-weight: 700;
+    }
+    a.addtocart {
+      @include font-size(16px);
+      padding: 0 20px;
+      line-height: 40px;
+      margin: 15px 0 5px;
     }
   }
 }
@@ -812,3 +824,88 @@ a.addtocart {
   margin: 5px 0;
 }
 
+/*----------------------------
+LIST
+----------------------------*/
+
+ul.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    margin: 5px 0;
+    clear:both;
+    border-bottom: 1px solid #d0d0d0;
+    overflow: hidden;
+    padding: 10px 0 10px 0;
+    &:last-child {
+      border:0;
+    }
+    a {
+
+    }
+    a.title {
+      overflow: hidden;
+      span.price {
+        color: $purple;
+        font-weight: 700;
+        display: block;
+        margin-top: 10px;
+      }
+    }
+    a.image {
+      margin-right: 10px;
+      float: left;
+      img {
+        width: 90px;
+        height: auto;
+      }
+    }
+  }
+}
+
+ul#tweets{
+  li {
+    a {
+      color: $purple;
+    }
+    span.time {
+      color: $purple;
+      @include font-size(14px);
+      text-transform: uppercase;
+      display: block;
+      margin-top: 15px;
+      font-weight: 100;
+    }
+  }
+}
+
+
+
+footer {
+  background: #efefef;
+  padding: 50px 0;
+  color: #444;
+  font-weight: 300;
+  .column {
+    margin-right: 3%;
+    width: 30.333%;
+  }
+  h1.section-title {
+      padding: 0px;
+      @include font-size(30px);
+      color: $turquoise;
+      margin-bottom: 30px;
+      display: inline-block;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  p {
+    @include font-size(20px);
+  }
+}
+
+.copyright {
+  background: darken( $darkpurple, 10% );
+  height: 70px;
+}
