@@ -247,8 +247,8 @@ header {
       border-right: 1px solid darken( $darkpurple, 7% );
       &:before {
         font-family: "Flaticon";
-        content: "\e007";
-        font-size: 28px;
+        content: "\e00b";
+        font-size: 27px;
         font-weight: 100;
         top:4px;
         position: absolute;
@@ -264,7 +264,7 @@ header {
       color: white;
       &:before {
         font-family: "Flaticon";
-        content: "\e00d";
+        content: "\e010";
         font-size: 20px;
         font-weight: 100;
         top:8px;
@@ -278,7 +278,7 @@ header {
       padding-left: 28px !important;
       &:before {
         font-family: "Flaticon";
-        content: "\e00c";
+        content: "\e00f";
         font-size: 25px;
         font-weight: 100;
         top:4px;
@@ -529,7 +529,7 @@ form {
     
     &:after {
       font-family: "Flaticon";
-      content: "\e006";
+      content: "\e009";
       font-size: 20px;
       position: absolute;
       top: 7%;
