@@ -13,8 +13,6 @@ $type: 'Lato', sans-serif;
 $script: 'Dancing Script', cursive;
 $link-color: #333;
 $link-hover: #0DA2D8;
-$link-vertical-padding: 8px;
-$link-horizontal-padding: 14px;
 $menu-background: #111;
 $buttonheight: 42px;
 
@@ -404,7 +402,7 @@ nav ul {
 
     a {
       display: block;
-      padding: $link-vertical-padding $link-horizontal-padding;
+      padding: 8px 14px;
       text-align: left;
       color: white;
       text-decoration: none;
@@ -589,7 +587,7 @@ body, html {
     background-repeat: no-repeat;
   }
   .wrapper {
-    padding: 230px 100px 150px;
+    padding: 235px 100px 145px;
   }
   .one .wrapper {
     text-align: center;
@@ -648,16 +646,21 @@ Content
   .featured {
     padding-top: 10px;
     padding-bottom: 40px;
-
+    .wrapper {
+      margin-top: -100px;
+      padding: 10px;
+    }
+    h1.section-title {
+      padding: 10px !important;
+    }
   }
   .wrapper {
     background: rgba(white, 0.85);
     margin-bottom: 10px;
-    margin-top: -100px;
     position: relative;
     z-index: 1;
     h1.section-title {
-      padding: 15px 10px;
+      padding: 10px 0px;
       @include font-size(25px);
       color: $darkpurple;
       text-transform: uppercase;
@@ -667,7 +670,7 @@ Content
     .directional-nav {
       float: right;
       clear: right;
-      margin: 10px;
+      margin: 15px 10px 10px 10px;
       a {
         border: 1px solid $darkpurple;
         padding: 6px 7px;
@@ -694,7 +697,7 @@ Content
       font-weight: 700;
     }
   }
-  .trending {
+  .offer {
     position: relative;
     text-align: center;
     border-top: 2px dashed $turquoise;
@@ -726,7 +729,6 @@ Content
       background: transparent;
     }
     .message {
-      /*background: rgba(white, 1);*/
       padding: 10px 0 0px;
       margin: 0 50px;
     }
@@ -769,6 +771,31 @@ Content
     }
     .product {
       background: white;
+    }
+  }
+  .new {
+    h1.section-title {
+      margin: 0px;
+    }
+    .wrapper {
+      padding: 30px 0;
+    }
+    .product-name {
+      @include font-size(90px);
+      font-weight: 700;
+      line-height: 100%;
+      margin: 0;
+    }
+    .product-desc {
+      @include font-size(22px);
+      margin:20px 0;
+      font-weight: 100;
+      line-height: 150%;
+    }
+    .product-price {
+      color: $turquoise;
+      @include font-size(55px);
+      font-weight: 700;
     }
   }
 }
