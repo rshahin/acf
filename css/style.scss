@@ -113,9 +113,7 @@ html, body {
 *, *:after, *:before {
   margin: 0;
   padding: 0;
-
   @include border-box;
-
   text-decoration: none;
 }
 
@@ -242,11 +240,20 @@ header {
         color: white;
         font-weight: 100;
         padding: 7px 0;
+        &:hover::before  {
+          color: $turquoise;
+        }
         a {
           @include font-size(20px);
           display: inline;
           padding: 0px 10px;
           font-weight: 100;
+          &:hover {
+            color: $turquoise;
+            span.count {
+              color: white;
+            }
+          }
         }
       }
     }
@@ -320,6 +327,9 @@ header {
     nav ul li a {
       font-weight: 300;
       @include font-size(20px);
+      &:hover{
+        font-weight:700;
+      }
     }
   }
   .nav {
@@ -373,7 +383,7 @@ nav {
     margin: 65px 0 0 0;
     max-height: 0;
     overflow: hidden;
-    transition: all 0.5s ease;
+    transition: all 0.1s ease;
     background: darken(#262626, 5%);
     width: 100%;
     display: none;
@@ -406,10 +416,10 @@ nav ul {
       text-align: left;
       color: white;
       text-decoration: none;
-      @include transition-duration(0.5s);
+      @include transition-duration(0.1s);
       &:hover {
         color: white;
-        @include transition-duration(0.5s);
+        @include transition-duration(0.1s);
       }
 
       @include menu-tweak {
@@ -682,9 +692,24 @@ Content
     margin-bottom: 25px;
     text-align: center;
     .product-image {
+      cursor: pointer;
       img {
         width: 100%;
         height: auto;
+      }
+      img.hover {
+        display: none;
+      }
+      img.still {
+        display: block;
+      }
+      &:hover{
+        img.hover {
+          display: block;
+        }
+        img.still {
+          display: none;
+        }
       }
     }
     .product-name {
@@ -771,6 +796,9 @@ Content
       line-height: 80px;
       display: inline-block;
       margin: 30px 3px 0;
+      &:hover{
+        background: $purple;
+      }
     }
     i::before {
       @include font-size(37px);
@@ -822,6 +850,10 @@ a.addtocart {
   display: inline-block;
   border-radius: 2px;
   margin: 5px 0;
+  cursor: pointer;
+  &:hover{
+    background: darken($purple, 10%);
+  }
 }
 
 /*----------------------------
