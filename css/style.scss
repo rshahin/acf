@@ -240,6 +240,10 @@ header {
         color: white;
         font-weight: 100;
         padding: 7px 0;
+        cursor: pointer;
+        &:hover a  {
+          color: $turquoise;
+        }
         &:hover::before  {
           color: $turquoise;
         }
@@ -249,7 +253,6 @@ header {
           padding: 0px 10px;
           font-weight: 100;
           &:hover {
-            color: $turquoise;
             span.count {
               color: white;
             }
@@ -655,7 +658,7 @@ Content
 .body-content {
   .featured {
     padding-top: 10px;
-    padding-bottom: 40px;
+    padding-bottom: 10px;
     .wrapper {
       margin-top: -100px;
       padding: 10px;
@@ -787,22 +790,6 @@ Content
       @include font-size(30px);
       font-weight: 300;
     }
-    a {
-      color: white;
-      border: 1px solid white;
-      border-radius: 50%;
-      height: 80px;
-      width: 80px;
-      line-height: 80px;
-      display: inline-block;
-      margin: 30px 3px 0;
-      &:hover{
-        background: $purple;
-      }
-    }
-    i::before {
-      @include font-size(37px);
-    }
     .product {
       background: white;
     }
@@ -914,6 +901,35 @@ ul#tweets{
 
 
 
+/*----------------------------
+Social Media
+----------------------------*/
+
+.social-media {
+  a {
+      color: white;
+      border: 1px solid white;
+      border-radius: 50%;
+      height: 80px;
+      width: 80px;
+      line-height: 80px;
+      display: inline-block;
+      margin: 30px 3px 0;
+      text-align: center;
+      &:hover{
+        background: $purple;
+      }
+    }
+    i::before {
+      @include font-size(37px);
+    }  
+}
+
+
+/*----------------------------
+Footer
+----------------------------*/
+
 footer {
   background: #efefef;
   padding: 50px 0;
@@ -922,6 +938,34 @@ footer {
   .column {
     margin-right: 3%;
     width: 30.333%;
+  }
+  .about {
+    h2 {
+      padding: 0px;
+      @include font-size(22px);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      font-weight: 700;
+      display: block;
+    }
+    .social-media {
+      margin: 0 auto 0 -5px;
+      a {
+          color: white;
+          border: 0px solid $text;
+          height: 44px;
+          width: 44px;
+          line-height: 44px;
+          margin: 0px 5px 0;
+          background: $purple;
+          &:hover{
+            background: $turquoise;
+          }
+        }
+        i::before {
+          @include font-size(19px);
+        }  
+    }
   }
   h1.section-title {
       padding: 0px;
@@ -939,5 +983,18 @@ footer {
 
 .copyright {
   background: darken( $darkpurple, 10% );
-  height: 70px;
+  padding: 10px 0;
+  p {
+    margin:6px;
+    color: white;
+    font-weight: 100;
+    @include font-size(18px);
+  }
+  nav {
+    margin-left: 14px;
+  }
+  nav ul li a {
+    font-weight: 100;
+    @include font-size(18px);
+  }
 }
