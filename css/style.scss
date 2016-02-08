@@ -219,6 +219,7 @@ header {
   width: 100%;
   .wrapper {
     display: table;
+    border-collapse: collapse;
   }
   a.logo {
     width: 308px;
@@ -227,20 +228,52 @@ header {
     text-indent: -9999px;
     @include svg-bg("logo");
     background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -154px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    &:hover {
+      -webkit-animation-name: hvr-pop;
+      animation-name: hvr-pop;
+      -webkit-animation-duration: 0.3s;
+      animation-duration: 0.3s;
+      -webkit-animation-timing-function: linear;
+      animation-timing-function: linear;
+      -webkit-animation-iteration-count: 1;
+      animation-iteration-count: 1;
+    }
   }
+  @-webkit-keyframes hvr-pop {
+    50% {
+      -webkit-transform: scale(1.03);
+      transform: scale(1.03);
+    }
+  }
+
+  @keyframes hvr-pop {
+    50% {
+      -webkit-transform: scale(1.03);
+      transform: scale(1.03);
+    }
+  }
+
   .header-front {
     height: 123px;
     overflow: visible;
     background: $darkpurple;
     .nav {
       padding-top: 43px;
-      width: 35%;
+      width: 50%;
       ul li {
         float: left;
         color: white;
         font-weight: 100;
         padding: 7px 0;
         cursor: pointer;
+        opacity: .9;
         &:hover a  {
           color: $turquoise;
         }
@@ -251,7 +284,7 @@ header {
           @include font-size(20px);
           display: inline;
           padding: 0px 10px;
-          font-weight: 100;
+          font-weight: 300;
           &:hover {
             span.count {
               color: white;
@@ -592,6 +625,25 @@ body, html {
   padding: 0;
   position: relative;
   width: 100%;
+  .sale {
+    font-weight: 100;
+    position: absolute;
+    right: 0px;
+    width: 130px;
+    height: 130px;
+    display: block;
+    border-radius: 50%;
+    background: white;
+    top:340px;
+    @include font-size(45px);
+    line-height: 100%;
+    padding: 28px 20px;
+    text-align: center;
+    color: $red;
+    -ms-transform: rotate(-25deg);
+    -webkit-transform: rotate(-25deg);
+    transform: rotate(-25deg);
+  }
   .slide {
     margin: 0;
     padding: 0;
@@ -611,7 +663,15 @@ body, html {
     font-weight: 800;
     line-height: 110%;
     margin: 0 0 25px 0;
+    position: relative;
+    display: block;
     /*text-shadow:1px 1px 0 rgba(0,0,0,0.2);*/
+  }
+  .alert {
+    background: darken($purple, 10%);
+    .wrapper {
+      padding: 10px 0;
+    }
   }
 }
 
@@ -644,10 +704,16 @@ Button
 
 .darkpurple-bg {
   background: $darkpurple;
+  &:hover {
+    background: $purple;
+  }
 }
 
 .red-bg {
   background: $red;
+  &:hover {
+    background: darken($red, 10%);
+  }
 }
 
 
@@ -658,18 +724,17 @@ Content
 .body-content {
   .featured {
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     .wrapper {
       margin-top: -100px;
       padding: 10px;
+      background: rgba(white, 0.85);
     }
     h1.section-title {
       padding: 10px !important;
     }
   }
   .wrapper {
-    background: rgba(white, 0.85);
-    margin-bottom: 10px;
     position: relative;
     z-index: 1;
     h1.section-title {
@@ -688,6 +753,9 @@ Content
         border: 1px solid $darkpurple;
         padding: 6px 7px;
       }
+      i::before {
+        color: $darkpurple;
+      }
     }
   }
   .product {
@@ -696,12 +764,21 @@ Content
     text-align: center;
     .product-image {
       cursor: pointer;
+      margin-bottom: 10px;
       img {
         width: 100%;
         height: auto;
       }
       img.hover {
         display: none;
+        -webkit-animation-name: hvr-pop;
+      animation-name: hvr-pop;
+      -webkit-animation-duration: 0.3s;
+      animation-duration: 0.3s;
+      -webkit-animation-timing-function: linear;
+      animation-timing-function: linear;
+      -webkit-animation-iteration-count: 1;
+      animation-iteration-count: 1;
       }
       img.still {
         display: block;
@@ -709,6 +786,14 @@ Content
       &:hover{
         img.hover {
           display: block;
+          -webkit-animation-name: hvr-pop;
+          animation-name: hvr-pop;
+          -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+          -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+          -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
         }
         img.still {
           display: none;
@@ -737,7 +822,7 @@ Content
     border-top: 2px dashed $turquoise;
     border-bottom: 2px dashed $turquoise;
     padding-top: 35px;
-    padding-bottom: 25px;
+    padding-bottom: 35px;
     &::before {
       content: "";
       position: absolute;
@@ -795,6 +880,7 @@ Content
     }
   }
   .new {
+    margin-top: 10px;
     h1.section-title {
       margin: 0px;
     }
@@ -900,6 +986,96 @@ ul#tweets{
 }
 
 
+.select{
+  position: relative;
+  display: block;
+  margin: 22px auto 0;
+  width: 100%;
+  max-width: 170px;
+  color: #cccccc;
+  vertical-align: middle;
+  text-align: left;
+  user-select: none;
+  -webkit-touch-callout: none;
+  float: right;
+  margin-left: 10px;
+  .placeholder{
+    position: relative;
+    display: block;
+    background-color: transparent;
+    z-index: 1;
+    padding: 9px;
+    cursor: pointer;
+    border: 1px solid $darkpurple;
+    color: $darkpurple;
+    &:hover{
+      border: 1px solid $purple;
+      color: $purple;
+    }
+    &:hover::after{
+      color: $purple;
+    }
+    &:after{
+      position: absolute;
+      right: 1em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Flaticon';
+      content: "\e000";
+      z-index: 10;
+      @include font-size(14px);
+    }
+  }
+
+  &.is-open{
+    .placeholder:after{
+      content: "\e00c";
+    }
+    ul{
+      display: block;
+    }
+  }
+
+  &.select--white{
+    .placeholder{
+      background: #fff;
+      color: #999;
+      &:hover{
+        background: darken(#fff,2%);
+      }
+    }
+  }
+
+  ul{
+    display: none;
+    position: absolute;
+    overflow: hidden;
+    width: 130%;
+    background: #fff;
+    border-radius: 2px;
+    top: 100%;
+    right: 0;
+    list-style: none;
+    margin: 5px 0 0 0;
+    padding: 0;
+    z-index: 100;
+
+    li{
+      display: block;
+      text-align: left;
+      padding: 0.8em 1em 0.8em 1em;
+      color: #999;
+      cursor: pointer;
+      @include font-size(18px);
+      &:hover{
+        background: $purple;
+        color: #fff;
+      }
+    }
+  }
+}
+
+
 
 /*----------------------------
 Social Media
@@ -923,6 +1099,112 @@ Social Media
     i::before {
       @include font-size(37px);
     }  
+}
+
+
+/*----------------------------
+Pages
+----------------------------*/
+
+.page {
+  
+}
+
+/*----------------------------
+Products Page
+----------------------------*/
+
+.products {
+  padding-top: 230px;
+  .product {
+    text-align: left;
+  }
+  .product-name {
+    @include font-size(65px);
+    font-weight: 700;
+  }
+  .new .wrapper {
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+  }
+  .header {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    border-top: 0px solid #e0e0e0;
+    border-bottom: 1px dotted #e0e0e0;
+    h1 {
+      font-weight: 700;
+      color: $darkpurple;
+      margin: 0px 0 20px;
+      @include font-size(65px);
+      float: left;
+      width: 50%;
+    }
+    .filters {
+      margin-top: 0px;
+    }
+  }
+}
+
+.breadcrumbs {
+  margin-bottom: 0px;
+}
+
+.product-list {
+  padding-left: 40px;
+}
+
+ul.crumbs {
+  margin: 0;
+  padding:0;
+  list-style: none;
+  li {
+    float: left;
+    margin-right: 10px;
+    position: relative;
+    @include font-size(17px);
+    font-weight: 100;
+    &:after {
+      content: '→';
+      padding: 0 0.25em 0 0.5em;
+      color: $darkpurple;
+    }
+    a {
+      font-weight: 100;
+    }
+  }
+}
+
+.sidebar {
+  margin-top: 20px;
+  section {
+    margin: 0 0 40px 0;
+    
+    h2 {
+      font-weight: 700;
+      @include font-size(22px);
+      color: $darkpurple;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+  }
+  ul {
+  margin: 0;
+  padding:0;
+  list-style: none;
+  li {
+    position: relative;
+    border-bottom: 1px dotted #e0e0e0;
+    padding: 10px 0;
+    a {
+      color: $purple;
+      @include font-size(20px);
+      font-weight: 100;
+    }
+  }
+}
 }
 
 
@@ -953,9 +1235,9 @@ footer {
       a {
           color: white;
           border: 0px solid $text;
-          height: 44px;
-          width: 44px;
-          line-height: 44px;
+          height: 50px;
+          width: 50px;
+          line-height: 50px;
           margin: 0px 5px 0;
           background: $purple;
           &:hover{
@@ -963,7 +1245,7 @@ footer {
           }
         }
         i::before {
-          @include font-size(19px);
+          @include font-size(21px);
         }  
     }
   }
