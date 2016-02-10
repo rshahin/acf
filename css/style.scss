@@ -62,7 +62,7 @@ $breakpoint-medium: "only screen and (max-width: 1100px)";
 
 $mobile-width: 766px;
 $tablet-width: 1000px;
-$menu-tweak: 767px;
+/*$menu-tweak: 767px;*/
 
 @mixin mobile-screen {
   @media (max-width: #{$mobile-width}) {
@@ -76,11 +76,11 @@ $menu-tweak: 767px;
   }
 }
 
-@mixin menu-tweak {
+/*@mixin menu-tweak {
   @media (max-width: #{$menu-tweak}) {
     @content;
   }
-}
+}*/
 
 /*----------------------------
 Grid
@@ -94,6 +94,10 @@ html, body {
   font-family: $type;
   -webkit-font-smoothing: antialiased;
   /*transition: all 0.4s ease;*/
+}
+
+body.pushy-active {
+  overflow-x: hidden;
 }
 
 %clearfix {
@@ -147,19 +151,13 @@ img {
   width: $grid-max-width;
   max-width: $grid-max-width;
   @include small-screen {
-    width: 90%;
+    width: 95%;
   }
 }
 
 @for $i from 1 through $grid-columns {
   .column-#{$i} {
     width: 100% / $grid-columns * $i;
-  }
-}
-
-@include small-screen {
-  .mobile-hidden {
-    display: none;
   }
 }
 
@@ -245,6 +243,16 @@ header {
       -webkit-animation-iteration-count: 1;
       animation-iteration-count: 1;
     }
+    @include small-screen {
+      width: 276px;
+      height: 127px;
+      margin-left: -138px;
+    }
+    @include mobile-screen {
+      width: 176px;
+      height: 100px;
+      margin-left: -88px;
+    }
   }
   @-webkit-keyframes hvr-pop {
     50% {
@@ -264,9 +272,21 @@ header {
     height: 123px;
     overflow: visible;
     background: $darkpurple;
+    @include small-screen {
+      height: 110px;
+    }
+    @include mobile-screen {
+      height: 70px;
+    }
     .nav {
       padding-top: 43px;
       width: 50%;
+      @include small-screen {
+        padding-top: 37px;
+      }
+      @include mobile-screen {
+        padding-top: 15px;
+      }
       ul li {
         float: left;
         color: white;
@@ -274,6 +294,9 @@ header {
         padding: 7px 0;
         cursor: pointer;
         opacity: .9;
+        @include small-screen {
+          border: 0;
+        }
         &:hover a  {
           color: $turquoise;
         }
@@ -307,6 +330,10 @@ header {
         top:4px;
         position: absolute;
         left:0;
+        @include mobile-screen {
+          font-size: 25px;
+          top:6px;
+        }
       }
     }
     li.user {
@@ -338,6 +365,10 @@ header {
         top:4px;
         position: absolute;
         left:0;
+        @include mobile-screen {
+          font-size: 23px;
+          top: 6px;
+        }
       }
       span.count {
         background: $turquoise;
@@ -346,6 +377,15 @@ header {
         font-weight: 400;
         padding: 3px 7px;
         margin-left: 5px;
+        @include mobile-screen {
+          @include font-size(14px);
+          padding: 3px 6px;
+        }
+      }
+      @include mobile-screen {
+        a {
+          padding: 0 !important;
+        }
       }
     }
     .right {
@@ -360,6 +400,9 @@ header {
     background: rgba($turquoise, 0.75);
     padding: 17px 0 9px;
     text-align: center;
+    @include small-screen {
+      display: none;
+    }
     nav ul li a {
       font-weight: 300;
       @include font-size(20px);
@@ -406,6 +449,32 @@ header {
 
 }
 
+.pushy{
+    width: 320px;
+    .search-area {
+      float: none;
+    }
+    .search_bar input[type="text"] {
+      padding: 10px 0 10px 30px;
+    }
+    .search_bar button[type="submit"]::after {
+        top: 26%;
+        right: auto;
+        bottom: 0%;
+        left: 0;
+      }
+}
+
+.pushy-left{
+    transform: translate3d(-320px,0,0); /* Updated the values */
+    /* Don't forget the vendor prefixes */
+}
+
+.container-push, .push-push{
+    transform: translate3d(320px,0,0); /* Updated the values */
+    /* Don't forget the vendor prefixes */
+}
+
 .search-area {
   float: right;
 }
@@ -414,37 +483,18 @@ header {
 NAVIGATION STYLES
 ----------------------------*/
 nav {
-  /*width:100%;*/
-  @include menu-tweak {
-    margin: 65px 0 0 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.1s ease;
-    background: darken(#262626, 5%);
-    width: 100%;
-    display: none;
-  }
+
 }
 
 nav ul {
   margin: 0;
   list-style: none;
-  @include menu-tweak {
-    margin: 0;
-    padding: 30px;
-  }
 
 
   li {
     /*float: left;*/
     display: inline-block;
     position: relative;
-    @include menu-tweak {
-      float: none;
-      position: relative;
-      margin: 0 5px 0 0;
-    }
-
 
     a {
       display: block;
@@ -456,15 +506,6 @@ nav ul {
       &:hover {
         color: white;
         @include transition-duration(0.1s);
-      }
-
-      @include menu-tweak {
-        display: table;
-        margin: 0;
-        padding: 15px 20px;
-        color: #fff;
-        text-shadow: none;
-        width: 100%;
       }
     }
   }
@@ -497,9 +538,6 @@ MOBILE NAV STYLES
   text-indent: -9999px;
   outline: none;
   @include svg-bg("menu-icon");
-  @include menu-tweak {
-    display: block;
-  }
 }
 
 .active {
@@ -531,9 +569,6 @@ MOBILE NAV STYLES
   opacity: .8;
   @include svg-bg("user");
   background-size: cover;
-  @include menu-tweak {
-    display: block;
-  }
   i {
     position: absolute;
     left: 0;
@@ -653,6 +688,12 @@ body, html {
   }
   .wrapper {
     padding: 255px 100px 165px;
+    @include small-screen {
+      padding: 150px 50px 140px;
+    }
+    @include mobile-screen {
+      padding: 100px 0px 120px;
+    }
   }
   .one .wrapper {
     text-align: center;
@@ -665,7 +706,12 @@ body, html {
     margin: 0 0 25px 0;
     position: relative;
     display: block;
-    /*text-shadow:1px 1px 0 rgba(0,0,0,0.2);*/
+    @include small-screen {
+      @include font-size(90px);
+    }
+    @include mobile-screen {
+      @include font-size(60px);
+    }
   }
   .alert {
     background: darken($purple, 10%);
@@ -689,6 +735,13 @@ Button
   display: inline-block;
   position: relative;
   text-transform: uppercase;
+  @include small-screen {
+    padding: 0 20px;
+    margin: 10px 5px;
+    @include font-size(17px);
+    color: white;
+    line-height: 40px;
+  }
 }
 
 .button.calltoaction {
@@ -729,6 +782,9 @@ Content
       margin-top: -100px;
       padding: 10px;
       background: rgba(white, 0.85);
+      @include mobile-screen {
+        width: 100%;
+      }
     }
     h1.section-title {
       padding: 10px !important;
@@ -744,14 +800,26 @@ Content
       text-transform: uppercase;
       margin-bottom: 10px;
       display: inline-block;
+      @include small-screen {
+        @include font-size(20px);
+      }
     }
     .directional-nav {
       float: right;
       clear: right;
       margin: 15px 10px 10px 10px;
+      @include mobile-screen {
+        margin: 10px 10px 10px 10px;
+      }
       a {
         border: 1px solid $darkpurple;
         padding: 6px 7px;
+        @include mobile-screen {
+          padding: 4px 5px;
+          i::before {
+            font-size:17px;
+          }
+        }
       }
       i::before {
         color: $darkpurple;
@@ -850,6 +918,9 @@ Content
     .message {
       padding: 10px 0 0px;
       margin: 0 50px;
+      @include mobile-screen {
+        margin: 0;
+      }
     }
     h1.section-title {
       padding: 0px 10px 0px;
@@ -860,6 +931,9 @@ Content
       position: relative;
       z-index: 1;
       font-family: $script;
+      @include mobile-screen {
+        @include font-size(50px);
+      }
     }
     span {
       display: inside-block;
@@ -869,6 +943,9 @@ Content
       z-index: 2;
       border-bottom: 3px solid white;
       @include font-size(30px);
+      @include mobile-screen {
+        @include font-size(20px);
+      }
     }
     h2 {
       color: white;
@@ -887,11 +964,25 @@ Content
     .wrapper {
       padding: 30px 0;
     }
+    .column-6 {
+      float: right;
+      @include mobile-screen {
+          width: 100%;
+      }
+    }
+    @include mobile-screen {
+      .product-image {
+        margin-bottom: 20px;
+      }
+    }
     .product-name {
       @include font-size(65px);
       font-weight: 700;
       line-height: 100%;
       margin: 0;
+      @include small-screen {
+        @include font-size(40px);
+      }
     }
     .product-desc {
       @include font-size(22px);
@@ -903,12 +994,24 @@ Content
       color: $turquoise;
       @include font-size(55px);
       font-weight: 700;
+      @include small-screen {
+        @include font-size(35px);
+      }
     }
     a.addtocart {
       @include font-size(16px);
       padding: 0 20px;
       line-height: 40px;
       margin: 15px 0 5px;
+    }
+  }
+}
+
+@include small-screen {
+  .column-3 {
+    width: 50%;
+    @include mobile-screen {
+      width: 100%;
     }
   }
 }
@@ -1095,9 +1198,17 @@ Social Media
       &:hover{
         background: $purple;
       }
+      @include mobile-screen {
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+      }
     }
     i::before {
       @include font-size(37px);
+      @include mobile-screen {
+        @include font-size(25px);
+      }
     }  
 }
 
@@ -1220,6 +1331,13 @@ footer {
   .column {
     margin-right: 3%;
     width: 30.333%;
+    @include small-screen {
+      width: 100%;
+      margin: 0 0 50px 0;
+      &:last-child {
+        margin-bottom:0;
+      }
+    }
   }
   .about {
     h2 {
@@ -1278,5 +1396,12 @@ footer {
   nav ul li a {
     font-weight: 100;
     @include font-size(18px);
+  }
+}
+
+
+@include small-screen {
+  .mobile-hidden {
+    display: none;
   }
 }
