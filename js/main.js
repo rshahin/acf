@@ -60,11 +60,13 @@ if (($(this).scrollTop() > 134) && ($(window).width() > 1024)){
 
 $(window).load(function() {
   $('.featured-slider').flexslider({
+    slideshow: false,
     animation: "slide",
     controlNav: false,
     customDirectionNav: $("#featured-slider-nav a")
   });
   $('.new-item-slider').flexslider({
+    slideshow: false,
     animation: "slide",
     controlNav: false,
     customDirectionNav: $("#new-item-slider-nav a")

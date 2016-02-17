@@ -1229,6 +1229,9 @@ Products Page
 
 .products {
   padding-top: 230px;
+  @include mobile-screen {
+    padding-top: 110px;
+  }
   .product {
     text-align: left;
   }
